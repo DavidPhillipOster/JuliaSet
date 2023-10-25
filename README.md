@@ -1,7 +1,7 @@
 # JuliaSet
 An Objective-C, OpenCL macOS app for exploring the JuliaSet
 
-![sample](images/sample.png)
+![sample](images/sample.jpg)
 
 ## Usage
 
