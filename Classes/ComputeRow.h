@@ -14,6 +14,9 @@
 #define JULIA_KERNEL /* empty */
 #endif
 
+#define JULIA_OPENCL 0
+
+
 // END #defines to allow the same code to compule as C or OpenCL.
 
 

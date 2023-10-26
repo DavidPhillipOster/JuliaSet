@@ -105,6 +105,16 @@
   [super dealloc];
 }
 
+- (void)setSize:(NSSize)size {
+  // Experimentally determined constant. If size is larger than that, I get a crash in clEnqueueReadBuffer
+  int  rowBytes = ((floor(size_.width) + 31) / 32) * 32 * sizeof(int);
+  if (0x2003A00 < sizeof(int) * ceil(size.height) * rowBytes) {
+    size.height = floor(0x2003A00 / (sizeof(int) * rowBytes));
+  }
+  [super setSize:size];
+}
+
+
 - (void)reallocate {
   [super reallocate];
   int count = size_.height * rowBytes_;

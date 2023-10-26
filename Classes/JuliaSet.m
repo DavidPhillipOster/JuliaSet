@@ -169,8 +169,9 @@
 - (void)reallocate {
   if (pixels_) { free(pixels_); pixels_ = nil; }
 
-  rowBytes_ = ((size_.width + 31) / 32) * 32 * 4;
+  rowBytes_ = ((floor(size_.width) + 31) / 32) * 32 * sizeof(int);
   pixels_ = malloc(rowBytes_ * size_.height);
+  NSAssert(pixels_, @"must not be nil");
 }
 
 - (void)setSize:(NSSize)size {

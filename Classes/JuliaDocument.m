@@ -55,7 +55,10 @@
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   NSData *result = [NSKeyedArchiver archivedDataWithRootObject:juliaSet_];
+#pragma clang diagnostic pop
   if (result == nil && outError != NULL) {
 		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
 	}
@@ -63,7 +66,10 @@
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   JuliaSet *set = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+#pragma clang diagnostic pop
   BOOL isOK = [set isKindOfClass:[JuliaSet class]];
   if (isOK) {
     [self setJuliaSet:set];
