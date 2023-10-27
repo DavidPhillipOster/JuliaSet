@@ -121,9 +121,10 @@
   if (output_) {
     clReleaseMemObject(output_);
   }
-  output_ = clCreateBuffer(context_, CL_MEM_WRITE_ONLY, sizeof(int) * count, NULL, NULL);
+  cl_int errcode = 0;
+  output_ = clCreateBuffer(context_, CL_MEM_USE_HOST_PTR, sizeof(int) * count, pixels_, &errcode);
   if (NULL == output_){
-    printf("Error: Failed to create output!\n");
+    printf("Error: Failed to create output! %d\n", errcode);
   }
 }
 
@@ -165,11 +166,7 @@
       // Enqueue our kernel to execute on the device
       err = clEnqueueNDRangeKernel(commands_, kernel_, 1, NULL, &global, &nThreads, 0, NULL, NULL); i++; 
     }
-    // TODO: I'm getting a -36, CL_INVALID_COMMAND_QUEUE here.
     if (!err) { err = clFinish(commands_); i++; }
-    if (!err) {
-      err = clEnqueueReadBuffer(commands_, output_, CL_TRUE, 0, sizeof(int) * size_.height * rowBytes_, pixels_, 0, NULL, NULL ); i++;  
-    }
     if (err) {
       printf("Error: Failed to update, step:%d err:%d!\n", i, err);
     } else {

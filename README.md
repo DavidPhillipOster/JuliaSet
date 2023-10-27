@@ -49,7 +49,7 @@ new_y = 2*x*y + b
 
 Originally written in 2010.
 
-The OpenCL version is not the default because I've had trouble with it when the document window is very large.
+The OpenCL version has trouble when the document window is very large.
 
 Apache License.
 
