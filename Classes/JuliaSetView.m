@@ -146,6 +146,23 @@
   [self dragged:theEvent];
 }
 
+- (void)scrollWheel:(NSEvent *)event {
+  float scaleRatio = 1.0 - event.deltaY / 10.;
+  [self zoom:scaleRatio];
+}
+
+- (void)otherMouseUp:(NSEvent *)event {
+  if (2 == event.buttonNumber) {
+    [self zoom:1/self.scale];
+  }
+}
+
+
+- (void)magnifyWithEvent:(NSEvent *)event {
+  float scaleRatio = 1.0 - event.magnification;
+  [self zoom:scaleRatio];
+}
+
 
 - (void)cursorUpdate:(NSEvent *)event {
 }
@@ -197,10 +214,12 @@
 }
 
 - (void)didUpdate:(JuliaSet *)juliaSet {
+  float elapsed = [juliaSet elapsed];
 #if DEBUG
-  printf("%s\n", [[NSString stringWithFormat:@"elapsed time ms: %g", [juliaSet elapsed] * 1.0e3] UTF8String]);
+//  printf("%s\n", [[NSString stringWithFormat:@"elapsed time ms: %g", elapsed * 1.0e3] UTF8String]);
 #endif
   [self setNeedsDisplay:YES];
+  [delegate_ framesPerSecond:elapsed ? 1.0/elapsed : 0];
 }
 
 - (void)didResize:(NSNotification *)notify {

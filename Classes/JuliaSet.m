@@ -63,6 +63,24 @@
   [archive encodeDouble:scale_ forKey:@"scale"];
 }
 
+- (JuliaStruct)juliaStruct {
+  JuliaStruct js;
+  js.a = a_;
+  js.b = b_;
+  js.x = offsetX_;
+  js.y = offsetY_;
+  js.scale = scale_;
+  return js;
+}
+
+- (void)setJuliaStruct:(JuliaStruct)js {
+  a_ = js.a;
+  b_ = js.b;
+  offsetX_ = js.x;
+  offsetY_ = js.y;
+  scale_ = js.scale;
+}
+
 - (void)draw {
   [image_ draw];
 }

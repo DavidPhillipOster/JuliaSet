@@ -10,6 +10,10 @@
 
 @class JuliaSet;
 
+typedef struct JuliaStruct {
+  double a, b, x, y, scale;
+} JuliaStruct;
+
 @protocol JuliaSetDelegate
 - (void)didUpdate:(JuliaSet *)juliaSet;
 - (void)scaleChanged:(JuliaSet *)juliaSet;
@@ -58,6 +62,9 @@
 // called. These nest, so the update doesn't happen until we are unnested.
 - (void)beginUpdateGroup;
 - (void)endUpdateGroup;
+
+- (JuliaStruct)juliaStruct;
+- (void)setJuliaStruct:(JuliaStruct)juliaStruct;
 
 // wall clock time to do the previous update, in seconds.
 - (float)elapsed;

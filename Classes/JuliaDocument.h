@@ -27,6 +27,8 @@
 @property (nonatomic, retain) IBOutlet NSTextField *scale;
 @property (nonatomic, retain) IBOutlet NSTextField *x;
 @property (nonatomic, retain) IBOutlet NSTextField *y;
+@property (nonatomic, retain) IBOutlet NSPopUpButton *engine;
+@property (nonatomic, retain) IBOutlet NSTextField *fps;
 
 - (IBAction)performanceTest:(id)sender;
 

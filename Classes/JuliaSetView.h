@@ -13,6 +13,7 @@
 @protocol JuliaSetViewDelegate
 - (void)mouseChanged:(JuliaSetView *)view;
 - (void)scaleChanged:(JuliaSetView *)view;
+- (void)framesPerSecond:(float)fps;
 @end
 
 @interface JuliaSetView : NSView<JuliaSetDelegate> {

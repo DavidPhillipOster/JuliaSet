@@ -49,6 +49,23 @@
     [juliaSet_ endUpdateGroup];
   }
   [juliaSetView_ setJuliaSet:juliaSet_];
+  [self engineUpdate];
+}
+
+- (NSUInteger)indexOfEngineClass {
+  return [juliaSet_ class] == [JuliaSetOpenCL class];
+}
+
+- (Class)engineClassForIndex:(NSUInteger)index {
+  switch (index) {
+    case 0: return [OpQJuliaSet class];
+    default:
+    case 1: return [JuliaSetOpenCL class];
+  }
+}
+
+- (void)engineUpdate {
+  [self.engine selectItemAtIndex:[self indexOfEngineClass]];
   [a_ setStringValue:[NSString stringWithFormat:@"%g", [juliaSetView_ a]]];
   [b_ setStringValue:[NSString stringWithFormat:@"%g", [juliaSetView_ b]]];
   [scale_ setStringValue:[NSString stringWithFormat:@"%3.1e", 1./[juliaSetView_ scale]]];
@@ -93,6 +110,26 @@
   [scale_ setStringValue:[NSString stringWithFormat:@"%3.1e", 1./[view scale]]];
 }
 
+- (void)framesPerSecond:(float)fps {
+  if (fps) {
+    self.fps.stringValue = [NSString stringWithFormat:@"%3.1f", fps];
+  } else {
+    self.fps.stringValue = @"";
+  }
+}
+
+- (IBAction)engineDidChange:(id)sender {
+  if (sender == self.engine) {
+    NSUInteger index = self.engine.indexOfSelectedItem;
+    if ([self engineClassForIndex:index] != [juliaSet_ class]) {
+      JuliaStruct js = [juliaSet_ juliaStruct];
+      [self setJuliaSet:[[[[self engineClassForIndex:index] alloc] init] autorelease]];
+      [juliaSet_ setJuliaStruct:js];
+      [juliaSetView_ setJuliaSet:juliaSet_];
+    }
+    [self engineUpdate];
+  }
+}
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
   NSString *s = [fieldEditor string];
