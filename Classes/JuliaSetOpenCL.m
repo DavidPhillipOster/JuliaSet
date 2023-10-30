@@ -7,13 +7,23 @@
 //
 
 #import "JuliaSetOpenCL.h"
+
+#import <OpenCL/opencl.h>
 #import <mach/mach_time.h>
 
 #define COUNT_OF(a) (sizeof(a)/sizeof(*(a)) )
 
 #define JULIA_FLOATTYPE float
 
-@implementation JuliaSetOpenCL
+@implementation JuliaSetOpenCL  {
+  cl_device_id deviceID_;
+  cl_context context_;
+  cl_command_queue commands_;
+  cl_program program_;
+  cl_kernel kernel_;
+  cl_mem output_;
+}
+
 
 - (id)init {
   self = [super init];

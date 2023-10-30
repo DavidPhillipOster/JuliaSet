@@ -12,7 +12,7 @@
 #include <sys/sysctl.h>
 
 // Experiments show we get the best performance by spawning a thread per core.
-static int NumberOfCores(void) {
+int OpQNumberOfCores(void) {
   size_t n = 0;
   size_t nLen = sizeof n;
   sysctlbyname("hw.activecpu", &n, &nLen, NULL, 0);
@@ -22,12 +22,15 @@ static int NumberOfCores(void) {
   return (int)n;
 }
 
-@implementation OpQJuliaSet
+@implementation OpQJuliaSet {
+  NSOperationQueue *q_;
+}
+
 
 - (id)init {
   self = [super init];
   if (self) {
-    int n = NumberOfCores();
+    int n = OpQNumberOfCores();
     if (0 < n) {
       [self setNThreads:n];
     }

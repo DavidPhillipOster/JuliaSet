@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		63D9087D12D4447C007889AF /* OpQJuliaSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D9087C12D4447C007889AF /* OpQJuliaSet.m */; };
 		63E306C112CA8AF1003C42D3 /* JuliaSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E306C012CA8AF1003C42D3 /* JuliaSet.m */; };
 		63E306C512CA8B01003C42D3 /* JuliaSetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E306C412CA8B01003C42D3 /* JuliaSetView.m */; };
+		63F567C32AEDB67500FFAFDE /* JuliaSetMetal.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F567C22AEDB67500FFAFDE /* JuliaSetMetal.m */; };
+		63F567C52AEDBB4600FFAFDE /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F567C42AEDBB4600FFAFDE /* Metal.framework */; };
+		63F567C72AEDBBAA00FFAFDE /* ComputeRow.metal in Sources */ = {isa = PBXBuildFile; fileRef = 63F567C62AEDBBAA00FFAFDE /* ComputeRow.metal */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* JuliaDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* JuliaDocument.m */; settings = {ATTRIBUTES = (); }; };
@@ -62,6 +65,10 @@
 		63E306C312CA8B01003C42D3 /* JuliaSetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuliaSetView.h; sourceTree = "<group>"; };
 		63E306C412CA8B01003C42D3 /* JuliaSetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuliaSetView.m; sourceTree = "<group>"; };
 		63E3082D12CAE16D003C42D3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		63F567C12AEDB67500FFAFDE /* JuliaSetMetal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JuliaSetMetal.h; sourceTree = "<group>"; };
+		63F567C22AEDB67500FFAFDE /* JuliaSetMetal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JuliaSetMetal.m; sourceTree = "<group>"; };
+		63F567C42AEDBB4600FFAFDE /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		63F567C62AEDBBAA00FFAFDE /* ComputeRow.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ComputeRow.metal; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* JuliaSet-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JuliaSet-Info.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* JuliaSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JuliaSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F567C52AEDBB4600FFAFDE /* Metal.framework in Frameworks */,
 				6344883B2AEAF48C00EDD496 /* OpenCL.framework in Frameworks */,
 				6344883D2AEAF4A800EDD496 /* AppKit.framework in Frameworks */,
 			);
@@ -111,6 +119,9 @@
 				63E306C412CA8B01003C42D3 /* JuliaSetView.m */,
 				63E306BF12CA8AF1003C42D3 /* JuliaSet.h */,
 				63E306C012CA8AF1003C42D3 /* JuliaSet.m */,
+				63F567C12AEDB67500FFAFDE /* JuliaSetMetal.h */,
+				63F567C22AEDB67500FFAFDE /* JuliaSetMetal.m */,
+				63F567C62AEDBBAA00FFAFDE /* ComputeRow.metal */,
 				6302090812DA6AD700C739DF /* JuliaSetOpenCL.h */,
 				6302090912DA6ADC00C739DF /* JuliaSetOpenCL.m */,
 				63D9087B12D4447C007889AF /* OpQJuliaSet.h */,
@@ -146,6 +157,7 @@
 		634488392AEAF48C00EDD496 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63F567C42AEDBB4600FFAFDE /* Metal.framework */,
 				6344883C2AEAF4A800EDD496 /* AppKit.framework */,
 				6344883A2AEAF48C00EDD496 /* OpenCL.framework */,
 			);
@@ -228,6 +240,8 @@
 				63E306C112CA8AF1003C42D3 /* JuliaSet.m in Sources */,
 				63E306C512CA8B01003C42D3 /* JuliaSetView.m in Sources */,
 				63D9087D12D4447C007889AF /* OpQJuliaSet.m in Sources */,
+				63F567C32AEDB67500FFAFDE /* JuliaSetMetal.m in Sources */,
+				63F567C72AEDBBAA00FFAFDE /* ComputeRow.metal in Sources */,
 				6302090A12DA6ADC00C739DF /* JuliaSetOpenCL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

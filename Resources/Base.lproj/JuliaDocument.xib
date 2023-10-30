@@ -162,6 +162,7 @@
                             <menu key="menu" id="zWz-EH-MC5">
                                 <items>
                                     <menuItem title="cpu" state="on" id="AGq-8E-GTn"/>
+                                    <menuItem title="cpu 1" id="BTt-y3-VZA"/>
                                     <menuItem title="OpenCL" id="jVQ-DV-NX3"/>
                                 </items>
                             </menu>

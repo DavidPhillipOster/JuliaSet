@@ -9,6 +9,7 @@
 #import "JuliaDocument.h"
 #import "OpQJuliaSet.h"
 #import "JuliaSetOpenCL.h"
+#import "JuliaSetMetal.h"
 
 @implementation JuliaDocument
 
@@ -37,6 +38,7 @@
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController {
   [super windowControllerDidLoadNib:aController];
+  [[self.engine itemAtIndex:0] setTitle:[NSString stringWithFormat:@"cpu %d", OpQNumberOfCores()]];
   if (nil == juliaSet_) {
 //    [self setJuliaSet:[[[OpQJuliaSet alloc] init] autorelease]];
     [self setJuliaSet:[[[JuliaSetOpenCL alloc] init] autorelease]];
@@ -53,14 +55,23 @@
 }
 
 - (NSUInteger)indexOfEngineClass {
-  return [juliaSet_ class] == [JuliaSetOpenCL class];
+  if ([juliaSet_ class] == [OpQJuliaSet class]) {
+    return 0;
+  } else if ([juliaSet_ class] == [JuliaSetOpenCL class]) {
+    return 2;
+  } else if ([juliaSet_ class] == [JuliaSetMetal class]) {
+    return 3;
+  }
+  return 1; // single threaded CPU
 }
 
 - (Class)engineClassForIndex:(NSUInteger)index {
   switch (index) {
     case 0: return [OpQJuliaSet class];
     default:
-    case 1: return [JuliaSetOpenCL class];
+    case 1: return [JuliaSet class];
+    case 2: return [JuliaSetOpenCL class];
+    case 3: return [JuliaSetMetal class];
   }
 }
 

@@ -10,10 +10,10 @@
 
 
 // NSOperationQueue version of JuliaSet
-@interface OpQJuliaSet : JuliaSet {
-  NSOperationQueue *q_;
-}
-
+@interface OpQJuliaSet : JuliaSet
 - (void)update; // recompute the bitmap and request a re-draw.
 
 @end
+
+// Gobal function, returns number of available cores
+int OpQNumberOfCores(void);
